@@ -10,7 +10,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet var sceneView: ARSCNView!
@@ -37,7 +37,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Image detection
         configuration.detectionImages = ARReferenceImage
             .referenceImages(inGroupNamed: "AR Resources", bundle: nil)
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -48,11 +48,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-
+    
     // MARK: - ARSCNViewDelegate
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-            
+        
         switch anchor {
         case let imageAnchor as ARImageAnchor:
             overlayImage(inNode: node, forAnchor: imageAnchor)
@@ -64,19 +64,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - Methods
     
     private func overlayImage(inNode node: SCNNode, forAnchor imageAnchor: ARImageAnchor) {
-
+        // Supporting recognized image
         let image = imageAnchor.referenceImage
-        let size = image.physicalSize
-        let width = size.width
-        let height = size.height
+        var isTheatre: Bool { image.name == "theatre" }
         
-        let overlayMesh = SCNPlane(width: width, height: height)
-        let texture = UIColor(red: 0, green: 1, blue: 0, alpha: 0.75)
+        // 100 rub size
+        let size = image.physicalSize
+        let height = size.height
+        let theatreWidth = size.width * (15 / 5.7149)
+        let horsesWidth = size.width * (15 / 6.0345)
+        let width = (isTheatre) ? theatreWidth : horsesWidth
+        
+        // 5000 rub size
+        let overlayWidth = width * (157 / 150)
+        let overlayHeight = height * (69 / 65)
+        
+        // Create overlay mesh
+        let overlayMesh = SCNPlane(width: overlayWidth, height: overlayHeight)
+        let texture = UIImage(named: (isTheatre) ? "bridge" : "monument")
         overlayMesh.firstMaterial?.diffuse.contents = texture
         
+        // Create overlay node
         let overlay = SCNNode(geometry: overlayMesh)
         overlay.eulerAngles.x = -.pi/2
+        let theatreShift: Float = 0.01
+        let horsesShift: Float = -0.01
+        overlay.position.x += (isTheatre) ? theatreShift : horsesShift
         
+        // Show ovarlay
         node.addChildNode(overlay)
     }
     

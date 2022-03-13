@@ -11,7 +11,12 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    // MARK: - IBOutlets
+    
     @IBOutlet var sceneView: ARSCNView!
+    
+    
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +26,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +33,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        
+        // Image detection
+        configuration.detectionImages = ARReferenceImage
+            .referenceImages(inGroupNamed: "AR Resources", bundle: nil)
 
         // Run the view's session
         sceneView.session.run(configuration)
@@ -48,27 +51,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+            
+        switch anchor {
+        case let imageAnchor as ARImageAnchor:
+            overlayImage(inNode: node, forAnchor: imageAnchor)
+        default:
+            print(anchor)
+        }
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+    // MARK: - Methods
+    
+    private func overlayImage(inNode node: SCNNode, forAnchor imageAnchor: ARImageAnchor) {
+
+        let image = imageAnchor.referenceImage
+        let size = image.physicalSize
+        let width = size.width
+        let height = size.height
         
+        let overlayMesh = SCNPlane(width: width, height: height)
+        let texture = UIColor(red: 0, green: 1, blue: 0, alpha: 0.75)
+        overlayMesh.firstMaterial?.diffuse.contents = texture
+        
+        let overlay = SCNNode(geometry: overlayMesh)
+        overlay.eulerAngles.x = -.pi/2
+        
+        node.addChildNode(overlay)
     }
     
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
 }

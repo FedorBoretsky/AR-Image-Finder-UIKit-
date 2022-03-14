@@ -46,7 +46,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARImageTrackingConfiguration()
         
         // Image detection
-        configuration.maximumNumberOfTrackedImages = 4
+        configuration.maximumNumberOfTrackedImages = 3
         configuration.trackingImages = ARReferenceImage
             .referenceImages(inGroupNamed: "AR Resources", bundle: nil)!
         

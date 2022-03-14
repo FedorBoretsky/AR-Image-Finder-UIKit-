@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		9F35DEF227DF8E730063E175 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F35DEF127DF8E730063E175 /* art.scnassets */; };
 		9F7ED5B827DFA84400ACBB8B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F7ED5B727DFA84400ACBB8B /* README.md */; };
-		9F7ED5BD27DFA86200ACBB8B /* Screenshot2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 9F7ED5BA27DFA86100ACBB8B /* Screenshot2.PNG */; };
-		9F7ED5BE27DFA86200ACBB8B /* Screenshot3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 9F7ED5BB27DFA86100ACBB8B /* Screenshot3.PNG */; };
-		9F7ED5BF27DFA86200ACBB8B /* Screenshot1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 9F7ED5BC27DFA86200ACBB8B /* Screenshot1.PNG */; };
 		9FC0257227DCFC8000AA2813 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC0257127DCFC8000AA2813 /* AppDelegate.swift */; };
 		9FC0257627DCFC8000AA2813 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC0257527DCFC8000AA2813 /* ViewController.swift */; };
 		9FC0257927DCFC8000AA2813 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC0257727DCFC8000AA2813 /* Main.storyboard */; };
@@ -22,9 +19,6 @@
 /* Begin PBXFileReference section */
 		9F35DEF127DF8E730063E175 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		9F7ED5B727DFA84400ACBB8B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9F7ED5BA27DFA86100ACBB8B /* Screenshot2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot2.PNG; sourceTree = "<group>"; };
-		9F7ED5BB27DFA86100ACBB8B /* Screenshot3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot3.PNG; sourceTree = "<group>"; };
-		9F7ED5BC27DFA86200ACBB8B /* Screenshot1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot1.PNG; sourceTree = "<group>"; };
 		9FC0256E27DCFC8000AA2813 /* AR Image Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR Image Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC0257127DCFC8000AA2813 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FC0257527DCFC8000AA2813 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,9 +41,6 @@
 		9F7ED5B927DFA84F00ACBB8B /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				9F7ED5BC27DFA86200ACBB8B /* Screenshot1.PNG */,
-				9F7ED5BA27DFA86100ACBB8B /* Screenshot2.PNG */,
-				9F7ED5BB27DFA86100ACBB8B /* Screenshot3.PNG */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -143,13 +134,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F7ED5BD27DFA86200ACBB8B /* Screenshot2.PNG in Resources */,
-				9F7ED5BF27DFA86200ACBB8B /* Screenshot1.PNG in Resources */,
 				9FC0257E27DCFC8200AA2813 /* LaunchScreen.storyboard in Resources */,
 				9F35DEF227DF8E730063E175 /* art.scnassets in Resources */,
 				9F7ED5B827DFA84400ACBB8B /* README.md in Resources */,
 				9FC0257B27DCFC8200AA2813 /* Assets.xcassets in Resources */,
-				9F7ED5BE27DFA86200ACBB8B /* Screenshot3.PNG in Resources */,
 				9FC0257927DCFC8000AA2813 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

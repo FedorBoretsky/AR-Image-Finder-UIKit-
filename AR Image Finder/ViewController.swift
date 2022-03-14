@@ -15,6 +15,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     
+    // MARK: - Properties
+    
+    let videoPlayer: AVPlayer = {
+        let url = Bundle.main.url(
+            forResource: "aboutRUB",
+            withExtension: "mp4",
+            subdirectory: "art.scnassets"
+        )!
+        return AVPlayer(url: url)
+    }()
+    
     
     // MARK: - Life cycle
     
@@ -62,7 +73,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    // MARK: - Methods
+    // MARK: - Overlay banknote methods
     
     private func overlayImage(inNode node: SCNNode, forAnchor imageAnchor: ARImageAnchor) {
         // Supporting recognized image
@@ -82,7 +93,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create overlay mesh
         let overlayMesh = SCNPlane(width: overlayWidth, height: overlayHeight)
-        let texture = UIImage(named: (isTheatre) ? "bridge" : "monument")
+        let texture =  isTheatre ? videoPlayer : UIImage(named: "monument")
+        if isTheatre {
+            videoPlayer.play()
+        }
         overlayMesh.firstMaterial?.diffuse.contents = texture
         
         // Create overlay node

@@ -106,6 +106,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let horsesShift: Float = -0.01
         overlay.position.x += (isTheatre) ? theatreShift : horsesShift
         
+        // Disappearing
+        overlay.runAction(.sequence([
+            .wait(duration: 5),
+            .fadeOut(duration: 3),
+            .removeFromParentNode(),
+        ]))
+        
         // Show ovarlay
         node.addChildNode(overlay)
     }
